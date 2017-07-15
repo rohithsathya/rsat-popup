@@ -1,0 +1,58 @@
+<html>
+
+<head>
+     <script>
+        function positionPopup(pos){
+            document.querySelector('rsat-popup').setAttribute('show','true');
+            document.querySelector('rsat-popup').setAttribute('pos',pos);
+            document.querySelector('rsat-popup').setAttribute('backdrop','false');
+        }
+        function hidePopup(){
+            document.querySelector('rsat-popup').setAttribute('show','false');
+        }
+        function showPopup(backdrop){
+             document.querySelector('rsat-popup').setAttribute('show','true');
+            if(backdrop){
+                
+                  document.querySelector('rsat-popup').setAttribute('backdrop','true');
+
+            }else{
+                  document.querySelector('rsat-popup').setAttribute('backdrop','false');
+            }
+        }
+    </script>
+
+    <link rel="import" href="rsat-popup.html" />
+
+</head>
+
+<body>
+
+ <rsat-popup pos="center" backdrop="false" show="false">
+        <div style="padding:10px;max-width:400px">
+            <h3>Welcome !!!</h3>
+            <h4>TLorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...</h4>
+            <button onclick="hidePopup()">hide Popup</button>
+        </div>
+
+    </rsat-popup>
+
+    <button onclick="showPopup(false)">show Popup</button>
+    <button onclick="showPopup(true)">show Popup with backdrop</button>
+     <button onclick="hidePopup()">hide Popup</button>
+
+
+    <button onclick="positionPopup('center')">center</button>
+    <button onclick="positionPopup('top-left')">top left</button>
+    <button onclick="positionPopup('top-right')">top right</button>
+    <button onclick="positionPopup('bottom-left')">bottom left</button>
+    <button onclick="positionPopup('bottom-right')">bottom right</button>
+
+   
+
+
+
+
+</body>
+
+</html>
