@@ -1,0 +1,23 @@
+{
+  "name": "rsat-popup",
+  "description": "web component based popup",
+  "main": "index.js",
+  "authors": [
+    "Rohith Sathyanarayana"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "web",
+    "components",
+    "webcomponents",
+    "popup",
+    "modal",
+    "dialog",
+    "html",
+    "shadowdom"
+  ],
+  "homepage": "https://github.com/rohithsathya/rsat-popup",
+  "dependencies": {
+    "webcomponentsjs": "^1.0.2"
+  }
+}

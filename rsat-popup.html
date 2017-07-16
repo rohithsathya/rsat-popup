@@ -54,49 +54,43 @@
             right: 0%;
         }
     </style>
-        <div class="rsat-dialog" id="rsat-popup-container">
-            <slot></slot>
-        </div>
-        <div class="rsat-dialog-backdrop rsat-hide" id="rsat-popup-backdrop"></div>
+    <div class="rsat-dialog" id="rsat-popup-container">
+        <slot></slot>
+    </div>
+    <div class="rsat-dialog-backdrop rsat-hide" id="rsat-popup-backdrop"></div>
 </template>
 <script>
+    var currentScript = document.currentScript;
     class rsatPopup extends HTMLElement {
         // A getter/setter for an pos property.
         get pos() {
             return this.getAttribute('pos');
         }
-
         set pos(val) {
             if (val) {
                 this.setAttribute('pos', val);
             }
         }
+
         get backdrop() {
             return this.getAttribute('backdrop');
         }
-
         set backdrop(val) {
             if (val) {
                 this.setAttribute('backdrop', val);
             }
         }
+
         get show() {
             return this.getAttribute('show');
         }
-
         set show(val) {
             if (val) {
                 this.setAttribute('show', val);
             }
         }
-        constructor() {
-            super();
-            this.initShadowDom();
-        }
-        connectedCallback() {
-            //this.initShadowDom();
-        }
 
+        //watch for attributes changes
         static get observedAttributes() { return ['pos', 'backdrop', 'show']; }
         // Respond to attribute changes.
         attributeChangedCallback(attr, oldValue, newValue) {
@@ -108,58 +102,27 @@
                 }
 
             }
-            //for backdrop
-            if (attr == "backdrop" && this.shadowDOM) {
-                var backdrop = this.shadowDOM.querySelector('#rsat-popup-backdrop');
-                if (newValue && newValue.toLocaleLowerCase() == 'true') {
-                    if (backdrop) {
-                        backdrop.classList.remove("rsat-hide");
-                        backdrop.classList.add("rsat-show");
-                    }
-                } else {
-                    if (backdrop) {
-                        backdrop.classList.remove("rsat-show");
-                        backdrop.classList.add("rsat-hide");
-                    }
-                }
-
-            }
             //for showing or hiding
             if (attr == "show" && this.shadowDOM) {
-                var backdrop = this.shadowDOM.querySelector('#rsat-popup-backdrop');
-                var popupContainer = this.shadowDOM.querySelector('#rsat-popup-container');
-
-                //show or hide the container
                 if (newValue && newValue.toLocaleLowerCase() == 'true') {
-                    popupContainer.classList.remove("rsat-hide");
-                    popupContainer.classList.add("rsat-show");
-                    //show or hide the backdrop
-                    if (this.backdrop) {
-                        backdrop.classList.remove("rsat-hide");
-                        backdrop.classList.add("rsat-show");
+                    //show popup
+                    if (this.backdrop && this.backdrop.toLocaleLowerCase() == 'true') {
+                        this.showPopup(true);
                     } else {
-                        backdrop.classList.remove("rsat-show");
-                        backdrop.classList.add("rsat-hide");
+                        this.showPopup(false);
                     }
-
                 } else {
-                    popupContainer.classList.remove("rsat-show");
-                    popupContainer.classList.add("rsat-hide");
-                    //hide backdrop
-                    backdrop.classList.remove("rsat-show");
-                    backdrop.classList.add("rsat-hide");
+                    this.hidePopup();
                 }
-
             }
         }
 
+        constructor() {
+            super();
+            this.initShadowDom();
+        }
         initShadowDom() {
-            // let shadowRoot = this.attachShadow({ mode: 'open' });
-            // shadowRoot.innerHTML = this.getTemplateString();
-            // this.shadowDOM = shadowRoot;
-            // this.shadowDOM.querySelector('button').textContent = "PHmG123DG1233...!!!";
-            const documentCurrentScript = document._currentScript || document.currentScript;
-            const mainDoc = documentCurrentScript.ownerDocument;
+            const mainDoc = currentScript.ownerDocument;
             let shadowRoot = this.attachShadow({ mode: 'open' });
             const t = mainDoc.querySelector('#rsat-popup-template');
             const instance = t.content.cloneNode(true);
@@ -168,6 +131,47 @@
 
 
         }
+
+        showPopup(backdrop) {
+            if (backdrop) {
+                this.showBackdrop();
+            } else {
+                this.hideBackdrop();
+            }
+            this.showPopupContainer();
+        }
+        hidePopup() {
+            this.hidePopupContainer();
+            this.hideBackdrop();
+
+        }
+
+        showPopupContainer() {
+            var popupContainer = this.shadowDOM.querySelector('#rsat-popup-container');
+            popupContainer.classList.remove("rsat-hide");
+            popupContainer.classList.add("rsat-show");
+
+        }
+        hidePopupContainer() {
+            var popupContainer = this.shadowDOM.querySelector('#rsat-popup-container');
+            popupContainer.classList.remove("rsat-show");
+            popupContainer.classList.add("rsat-hide");
+        }
+
+        showBackdrop() {
+            var backdrop = this.shadowDOM.querySelector('#rsat-popup-backdrop');
+            backdrop.classList.remove("rsat-hide");
+            backdrop.classList.add("rsat-show");
+
+        }
+        hideBackdrop() {
+            var backdrop = this.shadowDOM.querySelector('#rsat-popup-backdrop');
+            backdrop.classList.remove("rsat-show");
+            backdrop.classList.add("rsat-hide");
+
+        }
+
+
     }
     window.customElements.define('rsat-popup', rsatPopup);
 
