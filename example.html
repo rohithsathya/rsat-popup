@@ -1,39 +1,37 @@
 <html>
 
 <head>
-     <link rel="import" href="rsat-popup.html" />
-     <script>
-        function positionPopup(pos){
-            document.querySelector('rsat-popup').setAttribute('show',true);
-            document.querySelector('rsat-popup').setAttribute('pos',pos); 
+    <link rel="import" href="rsat-popup.html" />
+    <script>
+        function positionPopup(pos) {
+            document.querySelector('rsat-popup').setAttribute('show', true);
+            document.querySelector('rsat-popup').setAttribute('pos', pos);
         }
-        function hidePopup(){
-            document.querySelector('rsat-popup').setAttribute('show',false);
+        function hidePopup() {
+            document.querySelector('rsat-popup').setAttribute('show', false);
         }
 
-        function backdropChanged(ele){
-            if(ele.checked){
-                 document.querySelector('rsat-popup').setAttribute('backdrop',true);
-            }else{
-                document.querySelector('rsat-popup').setAttribute('backdrop',false);
+        function backdropChanged(ele) {
+            if (ele.checked) {
+                document.querySelector('rsat-popup').setAttribute('backdrop', true);
+            } else {
+                document.querySelector('rsat-popup').setAttribute('backdrop', false);
             }
         }
     </script>
 
-   
+
 
 </head>
 
 <body>
 
- <rsat-popup pos="center" backdrop="true" show="false">
-     
+    <rsat-popup pos="center" backdrop="true" show="false">
         <div style="padding:10px;max-width:400px">
             <h3>Welcome !!!</h3>
             <h4>TLorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...</h4>
             <button onclick="hidePopup()">hide Popup</button>
         </div>
-
     </rsat-popup>
 
     <label>Popup with Backdrop ?</label>
@@ -45,7 +43,7 @@
     <button onclick="positionPopup('bottom-left')">bottom left</button>
     <button onclick="positionPopup('bottom-right')">bottom right</button>
 
-   
+
 
 
 

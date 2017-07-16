@@ -1,37 +1,62 @@
-## Welcome to GitHub Pages
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/rohithsathya/rsat-popup)
 
-You can use the [editor on GitHub](https://github.com/rohithsathya/rsat-popup/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+# &lt;rsat-popup&gt;
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+`<rsat-popup>` Is a popup/modal dialog component based on web component v1 standards.
 
-### Markdown
+## Demo
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## [LIVE DEMO](https://rohithsathya.github.io/rsat-popup/example.html)
 
-```markdown
-Syntax highlighted code block
+## Install
 
-# Header 1
-## Header 2
-### Header 3
+Install the component using [Bower](http://bower.io/):
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```sh
+$ bower install rsat-popup --save
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Or [download as ZIP](https://github.com/rohithsathya/rsat-popup/archive/master.zip)
 
-### Jekyll Themes
+## Usage
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/rohithsathya/rsat-popup/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+1. Import Web Components' polyfill (if needed, for older browsers):
 
-### Support or Contact
+    ```html
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    ```
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+2. Import Custom Element:
+
+    ```html
+    <link rel="import" href="bower_components/rsat-popup/rsat-popup.html" />
+    ```
+
+3. Start using it!
+
+	```html
+	 <rsat-popup pos="center" backdrop="true" show="false">
+        <h3>your content goes here</h3>
+    </rsat-popup>
+	```
+#### options
+| Options       | Explanation  | Allowed Values  |
+| ------------- | ------------- |------------- |
+| pos          |defines where to display the popup w.r.t window |'center','top-left','top-right','bottom-left','bottom-right'|
+| show         |defines if the popup is shown or not, set to true to display popup  |'true' or 'false'|
+|backdrop      |this flag when set to true will draw a backdrop underneath popup | 'true' or 'false'|
+
+
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request
+
+## License
+
+[The MIT License (MIT)](https://opensource.org/licenses/MIT)
+
+Copyright (c) 2017 RSAT
