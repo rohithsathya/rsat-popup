@@ -42,7 +42,7 @@ Or [download as ZIP](https://github.com/rohithsathya/rsat-popup/archive/master.z
 #### options
 | Options       | Explanation  | Allowed Values  |
 | ------------- | ------------- |------------- |
-| pos          |defines where to display the popup w.r.t window |'center','top-left','top-right','bottom-left','bottom-right'|
+| pos          |defines where to display the popup w.r.t window |`'center'`,`'top-left'`,`'top-right'`,`'bottom-left'`,`'bottom-right'`|
 | show         |defines if the popup is shown or not, set to true to display popup  |'true' or 'false'|
 |backdrop      |this flag when set to true will draw a backdrop underneath popup | 'true' or 'false'|
 
